@@ -3,6 +3,17 @@
 DOCKER_IMAGE=ger-vsss
 CONTAINER_NAME=$DOCKER_IMAGE-container
 
+TEAM_YELLOW=false
+
+MULTICAST_IP=224.0.0.1
+COMMAND_IP=127.0.0.1
+
+COMMAND_PORT=20011
+VISION_PORT=10002
+REFEREE_PORT=10003
+REPLACER_PORT=10004
+
+
 docker run -it --rm \
         --name $CONTAINER_NAME \
         --user=$(id -u) \
@@ -19,4 +30,7 @@ docker run -it --rm \
         --volume="/etc/shadow:/etc/shadow:ro" \
         --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
         --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-        $DOCKER_IMAGE
+        $DOCKER_IMAGE \
+        ./vss.exe --multicast_ip $MULTICAST_IP --command_ip $COMMAND_IP \
+                  --referee_port $REFEREE_PORT --replacer_port $REPLACER_PORT \
+                  --command_port $COMMAND_PORT -v $VISION_PORT -t $TEAM_YELLOW
