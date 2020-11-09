@@ -2,4 +2,4 @@
 
 DOCKER_IMAGE=ger-vsss
 
-docker build -t $DOCKER_IMAGE .
+docker build --no-cache -t $DOCKER_IMAGE .
