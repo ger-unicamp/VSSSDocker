@@ -5,7 +5,8 @@ CONTAINER_NAME=$DOCKER_IMAGE-container
 
 TEAM_YELLOW=false
 
-MULTICAST_IP=224.0.0.1
+VISION_IP=224.0.0.1
+MULTICAST_IP=224.5.23.2
 COMMAND_IP=127.0.0.1
 
 COMMAND_PORT=20011
@@ -31,6 +32,6 @@ docker run -it --rm \
         --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
         --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
         $DOCKER_IMAGE \
-        ./vss.exe --multicast_ip $MULTICAST_IP --command_ip $COMMAND_IP \
+        ./vss.exe --vision_ip $VISION_IP --multicast_ip $MULTICAST_IP --command_ip $COMMAND_IP \
                   --referee_port $REFEREE_PORT --replacer_port $REPLACER_PORT \
                   --command_port $COMMAND_PORT -v $VISION_PORT -t $TEAM_YELLOW
